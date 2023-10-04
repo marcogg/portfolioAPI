@@ -1,9 +1,10 @@
 const express = require('express')
-const dotenv = require('dotenv').config()
-const connectionDB = require('./config/db.js')
+require('dotenv').config({ path: '../.env' })
 const colors = require('colors')
+const connectionDB = require('./config/db')
 const port = process.env.PORT || 5000
 
+console.log(process.env.MONGO_URI)
 connectionDB()
 
 const app = express()
