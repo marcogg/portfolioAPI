@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const project = new mongoose.Schema({ 
     category:{
-        type: [webDev, marketing, productDesign, visualDesign, spatialDesign],
-        default: design
+        type: ['webDev', 'marketing', 'productDesign', 'visualDesign', 'spatialDesign', 'design'],
+        default: 'design',
     },
     projectName: {
         type: String,
@@ -27,8 +27,18 @@ const project = new mongoose.Schema({
         required: [true, 'Please, type an image URL for this project']
     },
     description:{
-        type: String,
-        required: [true, 'Please, type a description for this project']
+        challenge: {
+            type: String,
+            required: [true, 'Please, type a challenge for this project']
+        },
+        approach: {
+            type: String,
+            required: [true, 'Please, type an approach for this project']
+        },
+        impact: {
+            type: String,
+            required: [true, 'Please, type the impact for this project']
+        }
     },
     projectLink:{
         type: String,
