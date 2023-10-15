@@ -5,7 +5,7 @@ const Project = require('../models/projectsModel')
 // Get Projects
 const getProjects = asyncHandler (async(req, res) => { 
     try {
-        const projectList = await Project.find({category: req.category})
+        const projectList = await Project.find({})
         res.status(200).json(projectList)
 
         // res.send({message:'Everything's cool projectController'})
@@ -24,20 +24,21 @@ const postProjects = asyncHandler( async (req, res) => {
         if(!req.body){
             res.status(404).json({message:'Project not created, type required data'}) 
         }
+        const {category, projectName, brand, year, caption, description:{challenge, approach, impact}, projectLink, skills } = req.body
+
         const project = await Project.create({
-            category:req.category,
-            projectName: req.projectName,
-            client: req.client,
-            year :req.year,
-            caption:req.caption,
-            year:req.year,
+            category:req.body.category,
+            projectName: req.body.projectName,
+            brand: req.body.brand,
+            year :req.body.year,
+            caption:req.body.caption,
             description:{
-                challenge:req.challenge,
-                approach: req.impact,
-                impact: req.impact
+                challenge:req.body.challenge,
+                approach: req.body.impact,
+                impact: req.body.impact
             },
-            projectLink:req.projectLink,
-            skills:req.skills
+            projectLink:req.body.projectLink,
+            skills:req.body.skills
         })
         res.status(201).json(project)
     }
