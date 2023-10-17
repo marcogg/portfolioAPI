@@ -24,7 +24,7 @@ const postProjects = asyncHandler( async (req, res) => {
         if(!req.body){
             res.status(404).json({message:'Project not created, type required data'}) 
         }
-        const {category, projectName, brand, year, caption, description:{challenge, approach, impact}, projectLink, skills } = req.body
+        const {category, projectName, brand, year, caption, challenge, approach, impact, projectLink, skills } = req.body
 
         const project = await Project.create({
             category:req.body.category,
@@ -32,11 +32,9 @@ const postProjects = asyncHandler( async (req, res) => {
             brand: req.body.brand,
             year :req.body.year,
             caption:req.body.caption,
-            description:{
-                challenge:req.body.challenge,
-                approach: req.body.impact,
-                impact: req.body.impact
-            },
+            challenge:req.body.challenge,
+            approach:req.body.approach,
+            impact:req.body.impact,
             projectLink:req.body.projectLink,
             skills:req.body.skills
         })
