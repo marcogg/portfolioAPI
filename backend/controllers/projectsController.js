@@ -17,6 +17,18 @@ const getProjects = asyncHandler (async(req, res) => {
 
 })
 
+// Get Projects by Category
+const getProjectsByCategory = asyncHandler(async (req, res) => {
+try {
+    const projectListCat = await Project.find({ "Project.0.category": req.params.category}).exec()
+    res.status(200).json(projectListCat)
+
+} catch (error) {
+    res.status(500).json({message:'Something went wrong'}) 
+}
+}) 
+
+
 
 // Post Project
 const postProjects = asyncHandler( async (req, res) => {
@@ -46,4 +58,4 @@ const postProjects = asyncHandler( async (req, res) => {
 
 })
 
-module.exports = {getProjects, postProjects}
+module.exports = {getProjects, getProjectsByCategory, postProjects}

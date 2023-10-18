@@ -1,5 +1,6 @@
 require('dotenv').config({ path: '../.env' })
 const express = require('express')
+const cors = require('cors')
 const colors = require('colors')
 const connectionDB = require('./config/db')
 const {errorHandler} = require('./middleware/errorMiddleware')
@@ -9,6 +10,7 @@ connectionDB()
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 
 // Projects Routes
