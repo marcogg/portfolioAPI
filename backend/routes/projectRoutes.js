@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const {getProjects, postProjects} = require('../controllers/projectsController')
+const {getProjects, postProjects, getProjectsByCategory} = require('../controllers/projectsController')
 
 router.get('/', getProjects)
-router.get('/getProjects/:category', getProjects)
+router.get('/getProjects/:category', getProjectsByCategory)
 router.post('/postProjects', postProjects)
 // router.patch('/updateProjects', updateProjects)
 // router.delete('/deleteProjects', protect, deleteProjects)

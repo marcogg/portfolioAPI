@@ -20,7 +20,8 @@ const getProjects = asyncHandler (async(req, res) => {
 // Get Projects by Category
 const getProjectsByCategory = asyncHandler(async (req, res) => {
 try {
-    const projectListCat = await Project.find({ "Project.0.category": req.params.category}).exec()
+    const projectListCat = await Project.find({ category : req.params.category}).exec()
+    console.log(req.params.category)
     res.status(200).json(projectListCat)
 
 } catch (error) {
