@@ -27,7 +27,19 @@ try {
 } catch (error) {
     res.status(500).json({message:'Something went wrong'}) 
 }
-}) 
+})
+
+// Get selected project
+const getSelectedProject = asyncHandler(async (req, res) => {
+    try {
+        const bringProject = await Project.findById(req.params.id).exec()
+
+        bringProject ? res.status(200).json(bringProject) : res.status(404).message({message:'Project not found'})
+
+    } catch (error) {
+        res.status(500).json({message:'Something went wrong, either not found or server error, try again'})
+    }
+})
 
 
 
@@ -60,4 +72,4 @@ const postProjects = asyncHandler( async (req, res) => {
 
 })
 
-module.exports = {getProjects, getProjectsByCategory, postProjects}
+module.exports = {getProjects, getProjectsByCategory, getSelectedProject, postProjects}
